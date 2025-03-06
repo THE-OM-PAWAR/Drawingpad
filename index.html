@@ -3,83 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Precise Writing Pad</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: white;
-        }
-        canvas {
-            display: block;
-            width: 100vw;
-            height: 100vh;
-            touch-action: none;
-        }
-    </style>
+    <title>Dr. John Doe - Cardiologist in Mumbai</title>
+    <meta name="description" content="Book an appointment with Dr. John Doe, a top cardiologist in Mumbai. Get expert heart care today.">
+    
+    <!-- Structured Data (Schema Markup) for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Physician",
+      "name": "Dr. John Doe",
+      "medicalSpecialty": "Cardiology",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Main Street",
+        "addressLocality": "Mumbai",
+        "addressRegion": "MH",
+        "postalCode": "400001",
+        "addressCountry": "IN"
+      },
+      "telephone": "+91 98765 43210",
+      "image": "https://example.com/dr-john-doe.jpg",
+      "priceRange": "₹500 - ₹1500 per consultation",
+      "url": "https://ocimum.com/doctors/dr-john-doe"
+    }
+    </script>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-
-    <script>
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas);
-
-        ctx.strokeStyle = "green";  // Pen color
-        ctx.lineWidth = 2.5;        // Pen thickness
-        ctx.lineCap = "round";      // Smooth edges
-
-        let isDrawing = false;
-        let lastX = 0, lastY = 0;
-
-        function draw(x, y) {
-            if (!isDrawing) return;
-            ctx.beginPath();
-            ctx.moveTo(lastX, lastY);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            lastX = x;
-            lastY = y;
-        }
-
-        function startDrawing(x, y) {
-            isDrawing = true;
-            lastX = x;
-            lastY = y;
-        }
-
-        function stopDrawing() {
-            isDrawing = false;
-        }
-
-        // Mouse Events
-        canvas.addEventListener("mousedown", (e) => startDrawing(e.clientX, e.clientY));
-        canvas.addEventListener("mousemove", (e) => draw(e.clientX, e.clientY));
-        canvas.addEventListener("mouseup", stopDrawing);
-        canvas.addEventListener("mouseleave", stopDrawing);
-
-        // Touch Events for Mobile
-        canvas.addEventListener("touchstart", (e) => {
-            const touch = e.touches[0];
-            startDrawing(touch.clientX, touch.clientY);
-        });
-
-        canvas.addEventListener("touchmove", (e) => {
-            const touch = e.touches[0];
-            draw(touch.clientX, touch.clientY);
-            e.preventDefault();  // Prevents scrolling while drawing
-        });
-
-        canvas.addEventListener("touchend", stopDrawing);
-    </script>
+    <h1>Dr. John Doe</h1>
+    <p><strong>Specialty:</strong> Cardiology</p>
+    <p><strong>Location:</strong> Mumbai, India</p>
+    <p><strong>Phone:</strong> +91 98765 43210</p>
+    <p><strong>Consultation Fee:</strong> ₹500 - ₹1500 per consultation</p>
+    <img src="https://example.com/dr-john-doe.jpg" alt="Dr. John Doe" width="200">
 </body>
 </html>
